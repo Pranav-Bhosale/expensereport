@@ -7,8 +7,8 @@ enum class ExpenseType {
 }
 
 data class Expense(
-    var type: ExpenseType,
-    var amount: Int = 0
+    val type: ExpenseType,
+    val amount: Int = 0
 )
 
 class ExpenseReport {
@@ -51,17 +51,17 @@ class ExpenseReport {
     }
 
     private fun calculateMealExpense(expense: Expense, mealExpenses: Int): Int {
-        var mealExpenses1 = mealExpenses
+        var newMealExpense = mealExpenses
         if (expense.type == ExpenseType.DINNER || expense.type == ExpenseType.BREAKFAST) {
-            mealExpenses1 += expense.amount
+            newMealExpense += expense.amount
         }
-        return mealExpenses1
+        return newMealExpense
     }
 
     private fun calculateTotalExpense(total: Int, expense: Expense): Int {
-        var total1 = total
-        total1 += expense.amount
-        return total1
+        var newTotal = total
+        newTotal += expense.amount
+        return newTotal
     }
 
     private fun checkMealOverExpenseMarker(expense: Expense): String {

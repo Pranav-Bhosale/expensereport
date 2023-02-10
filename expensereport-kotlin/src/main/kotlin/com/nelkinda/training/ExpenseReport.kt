@@ -30,7 +30,7 @@ class ExpenseReport {
 
             printer(expenseName + "\t" + expense.amount + "\t" + mealOverExpensesMarker)
 
-            total += expense.amount
+            total = calculateTotalExpense(total, expense)
         }
 
         printer("Meal expenses: $mealExpenses")
@@ -52,6 +52,12 @@ class ExpenseReport {
             mealExpenses1 += expense.amount
         }
         return mealExpenses1
+    }
+
+    private fun calculateTotalExpense(total: Int, expense: Expense): Int {
+        var total1 = total
+        total1 += expense.amount
+        return total1
     }
 
     private fun checkMealOverExpenseMarker(expense: Expense): String {

@@ -31,24 +31,28 @@ class ExpenseReport {
 
     private fun printExpenseReport(expense: Expense, printer: (String) -> Unit) {
         val expenseName: String = expense.getExpenseName()
-
         val mealOverExpensesMarker = expense.getIfMealOverExpenseMarker()
 
-        printer(expenseName + "\t" + expense.amount + "\t" + mealOverExpensesMarker)
+        printer(expenseName + "\t" + expense.getExpenseAmount() + "\t" + mealOverExpensesMarker)
     }
 
 
     private fun calculateMealExpense(expense: Expense, mealExpenses: Int): Int {
         var newMealExpense = mealExpenses
-        if (expense.type == ExpenseType.DINNER || expense.type == ExpenseType.BREAKFAST) {
-            newMealExpense += expense.amount
+        val expenseType=expense.getExpenseType()
+        val expenseAmount=expense.getExpenseAmount()
+
+        if (expenseType == ExpenseType.DINNER || expenseType == ExpenseType.BREAKFAST) {
+            newMealExpense += expenseAmount
         }
         return newMealExpense
     }
 
     private fun calculateTotalExpense(total: Int, expense: Expense): Int {
         var newTotal = total
-        newTotal += expense.amount
+        val expenseAmount=expense.getExpenseAmount()
+
+        newTotal += expenseAmount
         return newTotal
     }
 

@@ -2,8 +2,8 @@ package com.nelkinda.training
 
 
 class Expense(
-    val type: ExpenseType,
-    val amount: Int = 0
+    private val type: ExpenseType,
+    private val amount: Int = 0
 ) {
     fun getIfMealOverExpenseMarker(): String {
         return if (type == ExpenseType.DINNER && amount > 5000 || type == ExpenseType.BREAKFAST && amount > 1000) "X" else " "
@@ -17,4 +17,13 @@ class Expense(
         }
         return expenseName
     }
+
+    fun getExpenseType(): ExpenseType {
+        return type
+    }
+
+    fun getExpenseAmount(): Int {
+        return amount
+    }
+
 }

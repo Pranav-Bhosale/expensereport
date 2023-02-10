@@ -24,17 +24,21 @@ class ExpenseReport {
         for (expense in expenses) {
             mealExpenses = calculateMealExpense(expense, mealExpenses)
 
-            val expenseName: String = getExpenseName(expense)
-
-            val mealOverExpensesMarker = checkMealOverExpenseMarker(expense)
-
-            printer(expenseName + "\t" + expense.amount + "\t" + mealOverExpensesMarker)
+            printExpenseReport(expense, printer)
 
             total = calculateTotalExpense(total, expense)
         }
 
         printer("Meal expenses: $mealExpenses")
         printer("Total expenses: $total")
+    }
+
+    private fun printExpenseReport(expense: Expense, printer: (String) -> Unit) {
+        val expenseName: String = getExpenseName(expense)
+
+        val mealOverExpensesMarker = checkMealOverExpenseMarker(expense)
+
+        printer(expenseName + "\t" + expense.amount + "\t" + mealOverExpensesMarker)
     }
 
     private fun getExpenseName(expense: Expense): String {

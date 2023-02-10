@@ -24,11 +24,7 @@ class ExpenseReport {
         for (expense in expenses) {
             mealExpenses = calculateMealExpense(expense, mealExpenses)
 
-            val expenseName: String = when (expense.type) {
-                ExpenseType.DINNER -> "Dinner"
-                ExpenseType.BREAKFAST -> "Breakfast"
-                ExpenseType.CAR_RENTAL -> "Car Rental"
-            }
+            val expenseName: String = getExpenseName(expense)
 
             val mealOverExpensesMarker = checkMealOverExpenseMarker(expense)
 
@@ -39,6 +35,15 @@ class ExpenseReport {
 
         printer("Meal expenses: $mealExpenses")
         printer("Total expenses: $total")
+    }
+
+    private fun getExpenseName(expense: Expense): String {
+        val expenseName: String = when (expense.type) {
+            ExpenseType.DINNER -> "Dinner"
+            ExpenseType.BREAKFAST -> "Breakfast"
+            ExpenseType.CAR_RENTAL -> "Car Rental"
+        }
+        return expenseName
     }
 
     private fun calculateMealExpense(expense: Expense, mealExpenses: Int): Int {

@@ -11,9 +11,9 @@ class ExpenseReportTest {
     fun `should print report`() {
         val output = mutableListOf<String>()
 
-        val dinner = Expense(ExpenseType.DINNER,500)
-        val carRental = Expense(ExpenseType.CAR_RENTAL,100)
-        val breakfast = Expense(ExpenseType.BREAKFAST,1000000)
+        val dinner = Expense(ExpenseType.DINNER, 500)
+        val carRental = Expense(ExpenseType.CAR_RENTAL, 100)
+        val breakfast = Expense(ExpenseType.BREAKFAST, 1000000)
         val expectedOutput = listOf(
             "Expenses ${Date()}",
             "Dinner\t500\t ",

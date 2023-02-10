@@ -39,20 +39,22 @@ class ExpenseReport {
 
     private fun calculateMealExpense(expense: Expense, mealExpenses: Int): Int {
         var newMealExpense = mealExpenses
-        val expenseType=expense.getExpenseType()
-        val expenseAmount=expense.getExpenseAmount()
+        val expenseType = expense.getExpenseType()
+        val expenseAmount = expense.getExpenseAmount()
 
         if (expenseType == ExpenseType.DINNER || expenseType == ExpenseType.BREAKFAST) {
             newMealExpense += expenseAmount
         }
+
         return newMealExpense
     }
 
     private fun calculateTotalExpense(total: Int, expense: Expense): Int {
         var newTotal = total
-        val expenseAmount=expense.getExpenseAmount()
+        val expenseAmount = expense.getExpenseAmount()
 
         newTotal += expenseAmount
+
         return newTotal
     }
 

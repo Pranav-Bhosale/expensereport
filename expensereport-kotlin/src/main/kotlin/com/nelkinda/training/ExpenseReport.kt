@@ -6,10 +6,14 @@ enum class ExpenseType {
     DINNER, BREAKFAST, CAR_RENTAL
 }
 
-data class Expense(
+class Expense(
     val type: ExpenseType,
     val amount: Int = 0
-)
+) {
+     fun getIfMealOverExpenseMarker(): String {
+        return if (type == ExpenseType.DINNER && amount > 5000 || type == ExpenseType.BREAKFAST && amount > 1000) "X" else " "
+    }
+}
 
 class ExpenseReport {
 
@@ -36,7 +40,7 @@ class ExpenseReport {
     private fun printExpenseReport(expense: Expense, printer: (String) -> Unit) {
         val expenseName: String = getExpenseName(expense)
 
-        val mealOverExpensesMarker = checkMealOverExpenseMarker(expense)
+        val mealOverExpensesMarker = expense.getIfMealOverExpenseMarker()
 
         printer(expenseName + "\t" + expense.amount + "\t" + mealOverExpensesMarker)
     }
@@ -64,7 +68,4 @@ class ExpenseReport {
         return newTotal
     }
 
-    private fun checkMealOverExpenseMarker(expense: Expense): String {
-        return if (expense.type == ExpenseType.DINNER && expense.amount > 5000 || expense.type == ExpenseType.BREAKFAST && expense.amount > 1000) "X" else " "
-    }
 }

@@ -6,10 +6,10 @@ enum class ExpenseType {
     DINNER, BREAKFAST, CAR_RENTAL
 }
 
-class Expense {
-    lateinit var type: ExpenseType
+data class Expense(
+    var type: ExpenseType,
     var amount: Int = 0
-}
+)
 
 class ExpenseReport {
 
